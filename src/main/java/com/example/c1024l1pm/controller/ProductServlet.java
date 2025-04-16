@@ -32,7 +32,7 @@ public class ProductServlet extends HttpServlet {
         try {
             switch (action) {
                 case "create":
-//                    showNewform(req, resp);
+                    showNewform(request, response);
                     break;
                 case "edit":
 //                    showEditForm(req, resp);
@@ -49,8 +49,44 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        try {
+            switch (action) {
+                case "create":
+                    insertProduct(request, response);
+                    break;
+                case "edit":
+//                    updateProduct(request, response);
+                    break;
+                            
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void insertProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String name = request.getParameter("name");
+        double price = Double.parseDouble(request.getParameter("price"));
+        Product newProduct = new Product(name, price);
+        productDAO.save(newProduct);
+//        productDAO.saveWithStoreProdure(newProduct);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/products/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showNewform(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("products/create.jsp");
+        dispatcher.forward(request, response);
+    }
+
     private void listProduts(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        List<Product> listProducts = productDAO.findAll();
+//        List<Product> listProducts = productDAO.findAll();
+        List<Product> listProducts = productDAO.findAllWithStoreProdure();
         request.setAttribute("products", listProducts);
         RequestDispatcher dispatcher;
         dispatcher = request.getRequestDispatcher("products/list.jsp");

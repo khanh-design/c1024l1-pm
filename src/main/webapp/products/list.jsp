@@ -113,8 +113,8 @@ License: none (public domain)
   <h1>
     Content
   </h1>
-  <jsp:useBean id="listProducts" scope="request" type="java.util.List"/>
-  <c:forEach var="p" items="${listProducts}">
+<%--  <jsp:useBean id="listProducts" scope="request" type="java.util.List"/>--%>
+  <c:forEach var="p" items="${products}">
     <div class="product">
       <p><c:out value="${p.getName()}"/></p>
       <p><c:out value="${p.getPrice()}"/></p>
