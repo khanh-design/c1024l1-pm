@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "ProductServlet", urlPatterns = "/products")
+@WebServlet(name = "ProductServlet", value = "/products")
 public class ProductServlet extends HttpServlet {
 
     private static final long serialVersion = 1L;
@@ -77,10 +77,12 @@ public class ProductServlet extends HttpServlet {
 //        productDAO.saveWithStoreProdure(newProduct);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/products/create.jsp");
         dispatcher.forward(request, response);
+        RequestDispatcher view = getServletContext().getRequestDispatcher("/products/list.jsp");
+        view.forward(request, response);
     }
 
     private void showNewform(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("products/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/products/create.jsp");
         dispatcher.forward(request, response);
     }
 
