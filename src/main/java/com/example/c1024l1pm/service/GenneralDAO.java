@@ -8,4 +8,8 @@ public interface GenneralDAO <E> {
     List<E> findAllWithStoreProdure();
     void save(E entity) throws SQLException;
     void saveWithStoreProdure(E entity) throws SQLException;
+    public E findById(int id);
+    boolean update(E entity);
+    E findByIdWithStoreProdure(int id);
+    boolean updateWithStoreProdure(E entity);
 }

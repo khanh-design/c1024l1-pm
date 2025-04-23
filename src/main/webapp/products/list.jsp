@@ -71,7 +71,6 @@ License: none (public domain)
     #content {
       background-color: cornsilk;
       width: 70%;
-      height: 500px;
       float: left;
       opacity: 50%;
     }
@@ -114,10 +113,10 @@ License: none (public domain)
     Content
   </h1>
 <%--  <jsp:useBean id="listProducts" scope="request" type="java.util.List"/>--%>
-  <c:forEach var="p" items="${products}">
+  <c:forEach var="products" items="${listproducts}">
     <div class="product">
-      <p><c:out value="${p.getName()}"/></p>
-      <p><c:out value="${p.getPrice()}"/></p>
+      <p><c:out value="${products.getName()}"/></p>
+      <p><c:out value="${products.getPrice()}"/></p>
     </div>
   </c:forEach>
 </div>

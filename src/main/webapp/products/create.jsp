@@ -35,7 +35,6 @@
             <tr>
                 <td colspan="2" align="center">
                     <input type="submit" value="save">
-                    <input type="button" value="back">
                 </td>
             </tr>
         </table>
